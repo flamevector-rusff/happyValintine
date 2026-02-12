@@ -124,6 +124,8 @@ button:disabled {
 .heart {
   font-size: 590px;
   line-height: 1;
+  color:#7B001C;
+  transition:0.3s;
 }
 
 .heart-text {
@@ -155,6 +157,25 @@ button:disabled {
   transform: scale(1.1) rotate(-2deg);
 }
 
+/* ===== ЦВЕТА В SELECT ===== */
+
+#colorSelect option[value="#7B001C"] { background:#7B001C; color:white; }
+#colorSelect option[value="#CD5C5C"] { background:#CD5C5C; }
+#colorSelect option[value="#CB4154"] { background:#CB4154; }
+#colorSelect option[value="#DC143C"] { background:#DC143C; }
+#colorSelect option[value="#4F0014"] { background:#4F0014; color:white; }
+#colorSelect option[value="#FF97BB"] { background:#FF97BB; }
+#colorSelect option[value="#FBA0E3"] { background:#FBA0E3; }
+
+/* ===== ШРИФТЫ В SELECT ===== */
+
+#fontSelect option[value="Atziluth"] { font-family:'Atziluth'; }
+#fontSelect option[value="Belarus"] { font-family:'Belarus'; }
+#fontSelect option[value="Blast"] { font-family:'Blast'; }
+#fontSelect option[value="SKNigar"] { font-family:'SKNigar'; }
+#fontSelect option[value="Tarbarsam"] { font-family:'Tarbarsam'; }
+#fontSelect option[value="CinzelCustom"] { font-family:'CinzelCustom'; }
+
 </style>
 </head>
 
@@ -177,13 +198,13 @@ button:disabled {
 
 <label>Цвет</label>
 <select id="colorSelect">
-<option value="#7B001C">●</option>
-<option value="#CD5C5C">●</option>
-<option value="#CB4154">●</option>
-<option value="#DC143C">●</option>
-<option value="#4F0014">●</option>
-<option value="#FF97BB">●</option>
-<option value="#FBA0E3">●</option>
+<option value="#7B001C">#7B001C</option>
+<option value="#CD5C5C">#CD5C5C</option>
+<option value="#CB4154">#CB4154</option>
+<option value="#DC143C">#DC143C</option>
+<option value="#4F0014">#4F0014</option>
+<option value="#FF97BB">#FF97BB</option>
+<option value="#FBA0E3">#FBA0E3</option>
 </select>
 
 <label>Шрифт</label>
@@ -229,6 +250,7 @@ const previewSign = document.getElementById("previewSign");
 const heart = document.getElementById("heart");
 const sendBtn = document.getElementById("sendBtn");
 const fontSelect = document.getElementById("fontSelect");
+const colorSelect = document.getElementById("colorSelect");
 
 function updatePreview() {
 
@@ -248,16 +270,16 @@ sendBtn.disabled = !(toName.value && toLink.value);
 
 message.addEventListener("input", () => {
 counter.textContent = message.value.length + " / 200";
-if(message.value.length >= 200){
-counter.style.color="red";
-} else {
-counter.style.color="white";
-}
+counter.style.color = message.value.length >= 200 ? "red" : "white";
 updatePreview();
 });
 
 [toName,toLink,fromName,fontSelect].forEach(el=>{
 el.addEventListener("input",updatePreview);
+});
+
+colorSelect.addEventListener("change",()=>{
+heart.style.color = colorSelect.value;
 });
 
 anon.addEventListener("change",()=>{
@@ -266,18 +288,13 @@ fromName.style.background = anon.checked ? "#ccc" : "white";
 updatePreview();
 });
 
-document.getElementById("colorSelect").addEventListener("change",(e)=>{
-heart.style.filter = "brightness(0) saturate(100%) invert(18%) sepia(22%) saturate(1186%) hue-rotate(310deg)";
-heart.style.color = e.target.value;
-});
-
 sendBtn.addEventListener("click",()=>{
 
 let finalCode = `[html]
 <div class="valentine">
   <div class="heart-container">
-    <span class="heart">❤</span>
-    <div class="heart-text">
+    <span class="heart" style="color:${colorSelect.value};">❤</span>
+    <div class="heart-text" style="font-family:${fontSelect.value};">
       <a href="${toLink.value}">${toName.value}</a>, ${message.value}
     </div>
     <div class="signature">
