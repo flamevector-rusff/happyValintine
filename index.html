@@ -151,7 +151,7 @@ button{
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-emailjs.init("YOUR_PUBLIC_KEY"); // сюда вставь свой public key
+emailjs.init("b9M6h3lPvYhW1xIBZ"); // сюда вставь свой public key
 
 const MAX = 200;
 const toName = document.getElementById("toName");
@@ -263,7 +263,7 @@ function generatePNG(){
   const dataURL = canvas.toDataURL("image/png");
   const from = document.getElementById("anonymous").checked ? "Аноним" : fromName.value;
 
-  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+  emailjs.send("service_3gq1lpc","template_hl05cfu",{
     subject: `${from} → ${toName.value}`,
     message: `<img src="${dataURL}" alt="Валентинка">`
   }).then(()=>{
