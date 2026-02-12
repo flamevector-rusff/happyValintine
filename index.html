@@ -93,6 +93,17 @@ font-size:30px;color:#000;
 .name-link{display:inline-block;transition:0.3s;color:white !important;text-decoration:underline !important;}
 .name-link:hover{transform:scale(1.1) rotate(-2deg);}
 
+@media (max-width: 768px) {
+  body {
+    justify-content: flex-start; /* форма сверху */
+    align-items: flex-start;     /* тоже сверху */
+    padding-top: 20px;           /* небольшой отступ сверху */
+    height: auto;                /* не ограничиваем высоту экраном */
+    flex-direction: column;      /* чтобы форма и валентинка шли вертикально */
+  }
+}
+
+  
 </style>
 </head>
 
