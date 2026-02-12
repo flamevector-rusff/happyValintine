@@ -5,82 +5,40 @@
 <title>Валентинка PNG</title>
 
 <style>
+@font-face { font-family: 'Cinzel'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf') format('truetype'); }
+@font-face { font-family: 'Atziluth Script'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf') format('truetype'); }
+@font-face { font-family: 'Belarus'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf') format('opentype'); }
+@font-face { font-family: 'Blast Black Hollow'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf') format('opentype'); }
+@font-face { font-family: 'SK Nigar RUS'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf') format('opentype'); }
+@font-face { font-family: 'Tarbarsam Medium'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf') format('truetype'); }
+
 body {
-  margin:0;
-  padding:40px;
+  margin:0; padding:40px;
   font-family:'Cinzel', serif;
   background:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
 }
 
-.container{
-  display:flex;
-  gap:40px;
-}
-
+.container{display:flex; gap:40px;}
 .form-wrapper{
-  width:500px;
-  padding:25px;
+  width:500px; padding:25px;
   backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.25);
   border-radius:20px;
   box-shadow:0 0 30px rgba(0,0,0,0.2);
 }
 
-input, textarea, select{
-  width:100%;
-  margin-bottom:10px;
-  padding:8px;
-  font-family:'Cinzel', serif;
-}
-
-textarea{
-  resize:none;
-  height:150px;
-}
-
-.checkbox-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:10px;
-}
-
-.color-option{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.color-box{
-  width:20px;
-  height:20px;
-  border:1px solid #000;
-}
-
-.counter{
-  font-size:12px;
-  text-align:right;
-  margin-bottom:10px;
-  color:#333;
-}
-
-button{
-  display:block;
-  margin:10px auto 0;
-  padding:10px 25px;
-  font-family:'Cinzel', serif;
-  cursor:pointer;
-}
+input, textarea, select{ width:100%; margin-bottom:10px; padding:8px; font-family:'Cinzel', serif; }
+textarea{ resize:none; height:150px; }
+.checkbox-row{ display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+.color-option{ display:flex; align-items:center; gap:5px; }
+.color-box{ width:20px; height:20px; border:1px solid #000; }
+.counter{ font-size:12px; text-align:right; margin-bottom:10px; color:#333; }
+button{ display:block; margin:10px auto 0; padding:10px 25px; font-family:'Cinzel', serif; cursor:pointer; }
 
 .preview{
-  width:600px;
-  height:600px;
-  border:5px solid #000;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  width:600px; height:600px; border:5px solid #000;
+  position:relative; overflow:hidden;
+  display:flex; justify-content:center; align-items:center;
 }
 </style>
 </head>
@@ -88,7 +46,6 @@ button{
 
 <div class="container">
 <div class="form-wrapper">
-
 <label>Кому (имя + ссылка)</label>
 <input type="text" id="toName" placeholder="Имя">
 <input type="text" id="toLink" placeholder="Ссылка (не обязательно)">
@@ -107,43 +64,26 @@ button{
 
 <label>Цвет</label>
 <div class="checkbox-row" id="colorOptions">
-  <!-- Здесь можно добавлять новые цвета -->
-  <div class="color-option">
-    <input type="radio" name="color" value="#CD4A4C" checked>
-    <div class="color-box" style="background:#CD4A4C;"></div>
-  </div>
-  <div class="color-option">
-    <input type="radio" name="color" value="#8B0000">
-    <div class="color-box" style="background:#8B0000;"></div>
-  </div>
-  <div class="color-option">
-    <input type="radio" name="color" value="#E32636">
-    <div class="color-box" style="background:#E32636;"></div>
-  </div>
-  <div class="color-option">
-    <input type="radio" name="color" value="#5E2129">
-    <div class="color-box" style="background:#5E2129;"></div>
-  </div>
-  <div class="color-option">
-    <input type="radio" name="color" value="#F19CBB">
-    <div class="color-box" style="background:#F19CBB;"></div>
-  </div>
+  <div class="color-option"><input type="radio" name="color" value="#CD4A4C" checked><div class="color-box" style="background:#CD4A4C;"></div></div>
+  <div class="color-option"><input type="radio" name="color" value="#8B0000"><div class="color-box" style="background:#8B0000;"></div></div>
+  <div class="color-option"><input type="radio" name="color" value="#E32636"><div class="color-box" style="background:#E32636;"></div></div>
+  <div class="color-option"><input type="radio" name="color" value="#5E2129"><div class="color-box" style="background:#5E2129;"></div></div>
+  <div class="color-option"><input type="radio" name="color" value="#F19CBB"><div class="color-box" style="background:#F19CBB;"></div></div>
+  <div class="color-option"><input type="radio" name="color" value="#412227"><div class="color-box" style="background:#412227;"></div></div>
 </div>
 
 <label>Шрифт</label>
 <select id="font">
-  <!-- Можно добавить новые шрифты -->
-  <option value="Cinzel">Cinzel</option>
-  <option value="Atziluth Script">Atziluth Script</option>
-  <option value="Belarus">Belarus</option>
-  <option value="Blast Black Hollow">Blast Black Hollow</option>
-  <option value="SK Nigar RUS">SK Nigar RUS</option>
-  <option value="Tarbarsam Medium">Tarbarsam Medium</option>
+  <option value="Cinzel" style="font-family:'Cinzel'">Cinzel</option>
+  <option value="Atziluth Script" style="font-family:'Atziluth Script'">Atziluth Script</option>
+  <option value="Belarus" style="font-family:'Belarus'">Belarus</option>
+  <option value="Blast Black Hollow" style="font-family:'Blast Black Hollow'">Blast Black Hollow</option>
+  <option value="SK Nigar RUS" style="font-family:'SK Nigar RUS'">SK Nigar RUS</option>
+  <option value="Tarbarsam Medium" style="font-family:'Tarbarsam Medium'">Tarbarsam Medium</option>
 </select>
 
 <button onclick="previewValentine()">Посмотреть Валентинку</button>
 <button onclick="generatePNG()">Упаковать Валентинку</button>
-
 </div>
 
 <div class="preview" id="preview"></div>
@@ -151,128 +91,97 @@ button{
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-emailjs.init("b9M6h3lPvYhW1xIBZ"); // сюда вставь свой public key
+emailjs.init("b9M6h3lPvYhW1xIBZ");
 
-const MAX = 200;
-const toName = document.getElementById("toName");
-const message = document.getElementById("message");
-const counter = document.getElementById("charCount");
-const fromName = document.getElementById("fromName");
+const MAX=200;
+const toName=document.getElementById("toName");
+const message=document.getElementById("message");
+const counter=document.getElementById("charCount");
+const fromName=document.getElementById("fromName");
 
-document.getElementById("anonymous").addEventListener("change", function(){
-  fromName.disabled = this.checked;
-  if(this.checked) fromName.value = "Аноним";
-  else fromName.value = "";
+document.getElementById("anonymous").addEventListener("change",function(){
+  fromName.disabled=this.checked;
+  if(this.checked) fromName.value="Аноним"; else fromName.value="";
 });
 
 function updateCounter(){
-  let total = toName.value.length + message.value.length;
-  if(total > MAX){
-    message.value = message.value.substring(0, MAX - toName.value.length);
-    total = MAX;
-  }
-  counter.textContent = total + " / " + MAX;
-  counter.style.color = total >= MAX ? "red" : "#333";
+  let total=toName.value.length+message.value.length;
+  if(total>MAX){message.value=message.value.substring(0,MAX-toName.value.length); total=MAX;}
+  counter.textContent=total+" / "+MAX;
+  counter.style.color=total>=MAX?"red":"#333";
 }
-
-toName.addEventListener("input", updateCounter);
-message.addEventListener("input", updateCounter);
+toName.addEventListener("input",updateCounter);
+message.addEventListener("input",updateCounter);
 
 function previewValentine(){
-  const color = document.querySelector('input[name="color"]:checked').value;
-  const font = document.getElementById("font").value;
-  const from = document.getElementById("anonymous").checked ? "Аноним" : fromName.value;
-  const msg = message.value.toLowerCase();
-  const to = toName.value;
+  const color=document.querySelector('input[name="color"]:checked').value;
+  const font=document.getElementById("font").value;
+  const from=document.getElementById("anonymous").checked?"Аноним":fromName.value;
+  const msg=message.value.toLowerCase();
+  const to=toName.value;
 
-  const preview = document.getElementById("preview");
-  preview.innerHTML = "";
-
-  const canvas = document.createElement("canvas");
-  canvas.width = 600;
-  canvas.height = 600;
+  const preview=document.getElementById("preview");
+  preview.innerHTML="";
+  const canvas=document.createElement("canvas");
+  canvas.width=600; canvas.height=600;
   preview.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
+  const ctx=canvas.getContext("2d");
 
-  const bg = new Image();
-  bg.crossOrigin = "anonymous";
-  bg.src = "https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg";
+  const bg=new Image(); bg.crossOrigin="anonymous";
+  bg.src="https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg";
+  const heart=new Image(); heart.crossOrigin="anonymous";
+  heart.src="https://www.clipartbest.com/cliparts/nTX/8Rk/nTX8Rkdac.png";
 
-  const heart = new Image();
-  heart.crossOrigin = "anonymous";
-  heart.src = "https://www.clipartbest.com/cliparts/nTX/8Rk/nTX8Rkdac.png";
+  let loaded=0;
+  function drawIfReady(){
+    loaded++;
+    if(loaded<2) return;
+    ctx.drawImage(bg,0,0,600,600);
+    ctx.fillStyle=color;
+    ctx.fillRect(0,0,600,600);
+    ctx.globalCompositeOperation="destination-in";
+    ctx.drawImage(heart,0,0,600,600);
+    ctx.globalCompositeOperation="source-over";
+    ctx.drawImage(heart,0,0,600,600);
 
-  bg.onload = () => {
-    ctx.drawImage(bg, 0, 0, 600, 600);
-    heart.onload = () => {
-      // Цветное сердце
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, 600, 600);
-      ctx.globalCompositeOperation = "destination-in";
-      ctx.drawImage(heart, 0, 0, 600, 600);
-      ctx.globalCompositeOperation = "source-over";
-      ctx.drawImage(heart, 0, 0, 600, 600);
+    ctx.fillStyle="white";
+    ctx.font=`24px ${font}`;
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    wrapText(ctx,`${to}, ${msg}`,300,300,320,30);
 
-      // Текст внутри сердца
-      ctx.fillStyle = "white";
-      ctx.font = `24px ${font}`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      wrapText(ctx, `${to}, ${msg}`, 300, 300, 320, 30);
-
-      // Подпись
-      ctx.fillStyle = "black";
-      ctx.font = `bold 16px ${font}`;
-      ctx.textAlign = "right";
-      ctx.fillText(`с любовью, ${from}`, 580, 580);
-    }
+    ctx.fillStyle="black"; ctx.font=`bold 16px ${font}`;
+    ctx.textAlign="right";
+    ctx.fillText(`с любовью, ${from}`,580,580);
   }
+  bg.onload=drawIfReady;
+  heart.onload=drawIfReady;
 }
 
-// перенос текста
-function wrapText(ctx, text, x, y, maxWidth, lineHeight){
-  const words = text.split(' ');
-  let line = '';
-  let lines = [];
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){
+  const words=text.split(' ');
+  let line=''; let lines=[];
   for(let n=0;n<words.length;n++){
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if(metrics.width > maxWidth && n > 0){
-      lines.push(line);
-      line = words[n] + ' ';
-    } else {
-      line = testLine;
-    }
+    const testLine=line+words[n]+' ';
+    const metrics=ctx.measureText(testLine);
+    if(metrics.width>maxWidth && n>0){lines.push(line); line=words[n]+' ';} else{line=testLine;}
   }
   lines.push(line);
-
-  const startY = y - (lines.length-1)/2*lineHeight;
-  for(let i=0;i<lines.length;i++){
-    ctx.fillText(lines[i], x, startY + i*lineHeight);
-  }
+  const startY=y-(lines.length-1)/2*lineHeight;
+  for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],x,startY+i*lineHeight);
 }
 
-// Отправка на EmailJS
 function generatePNG(){
-  const canvas = document.querySelector("#preview canvas");
-  if(!canvas){
-    alert("Сначала нажмите 'Посмотреть Валентинку'");
-    return;
-  }
-  const dataURL = canvas.toDataURL("image/png");
-  const from = document.getElementById("anonymous").checked ? "Аноним" : fromName.value;
+  const canvas=document.querySelector("#preview canvas");
+  if(!canvas){alert("Сначала нажмите 'Посмотреть Валентинку'"); return;}
+  const dataURL=canvas.toDataURL("image/png");
+  const from=document.getElementById("anonymous").checked?"Аноним":fromName.value;
 
   emailjs.send("service_3gq1lpc","template_hl05cfu",{
-    subject: `${from} → ${toName.value}`,
-    message: `<img src="${dataURL}" alt="Валентинка">`
-  }).then(()=>{
-    alert("Валентинка отправлена на почту!");
-  }).catch((err)=>{
-    alert("Ошибка отправки: " + err);
-  });
+    subject:`${from} → ${toName.value}`,
+    message:`<img src="${dataURL}" alt="Валентинка">`
+  }).then(()=>alert("Валентинка отправлена на почту!"))
+    .catch(err=>alert("Ошибка: "+err));
 }
 </script>
-
 </body>
 </html>
