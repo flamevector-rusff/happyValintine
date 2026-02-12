@@ -38,7 +38,7 @@
 
 body{
 margin:0;background-image:url('https://elements-resized.envatousercontent.com/elements-cover-images/2bfb5b39-5740-44e4-9d36-931660730f97?w=433&cf_fit=scale-down&q=85&format=auto&s=cb1138b5e841446c1dabbcf8e0ac5fc2ceed2b65dc28da8cc0cb9e8693a09dce');
-background-repeat:repeat;display:flex;justify-content:center;align-items:center;
+background-repeat:repeat;display:flex;justify-content:center;align-items:center;flex-direction: row;align-items:flex-start;
 height:100vh;gap:40px;font-family:'CinzelCustom';
 }
 
@@ -96,9 +96,9 @@ font-size:30px;color:#000;
 @media (max-width: 768px) {
   body {
     justify-content: flex-start; /* форма сверху */
-    align-items: flex-start;     /* тоже сверху */
+    align-items: center;     /* тоже сверху */
     padding-top: 20px;           /* небольшой отступ сверху */
-    height: auto;                /* не ограничиваем высоту экраном */
+    min-height: auto;                /* не ограничиваем высоту экраном */
     flex-direction: column;      /* чтобы форма и валентинка шли вертикально */
   }
 }
