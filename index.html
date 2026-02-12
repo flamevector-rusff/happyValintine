@@ -35,7 +35,7 @@ input, textarea, select{
 
 textarea{
   resize:none;
-  height:130px;
+  height:150px;
 }
 
 .checkbox-row{
@@ -78,7 +78,6 @@ button{
   border:5px solid #000;
   position:relative;
   overflow:hidden;
-  background:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
   display:flex;
   justify-content:center;
   align-items:center;
@@ -91,8 +90,8 @@ button{
 <div class="form-wrapper">
 
 <label>Кому (имя + ссылка)</label>
-<input type="text" id="toName">
-<input type="text" id="toLink">
+<input type="text" id="toName" placeholder="Имя">
+<input type="text" id="toLink" placeholder="Ссылка (не обязательно)">
 
 <div class="checkbox-row">
   <label for="anonymous">Анонимно</label>
@@ -100,14 +99,15 @@ button{
 </div>
 
 <label>От кого</label>
-<input type="text" id="fromName">
+<input type="text" id="fromName" placeholder="Ваше имя">
 
 <label>Пожелание</label>
-<textarea id="message" maxlength="200"></textarea>
+<textarea id="message" maxlength="200" placeholder="Текст пожелания"></textarea>
 <div class="counter" id="charCount">0 / 200</div>
 
 <label>Цвет</label>
-<div class="checkbox-row">
+<div class="checkbox-row" id="colorOptions">
+  <!-- Здесь можно добавлять новые цвета -->
   <div class="color-option">
     <input type="radio" name="color" value="#CD4A4C" checked>
     <div class="color-box" style="background:#CD4A4C;"></div>
@@ -120,13 +120,25 @@ button{
     <input type="radio" name="color" value="#E32636">
     <div class="color-box" style="background:#E32636;"></div>
   </div>
+  <div class="color-option">
+    <input type="radio" name="color" value="#5E2129">
+    <div class="color-box" style="background:#5E2129;"></div>
+  </div>
+  <div class="color-option">
+    <input type="radio" name="color" value="#F19CBB">
+    <div class="color-box" style="background:#F19CBB;"></div>
+  </div>
 </div>
 
 <label>Шрифт</label>
 <select id="font">
-  <option value="'Cinzel', serif">Cinzel</option>
-  <option value="'Atziluth Script', cursive">Atziluth Script</option>
-  <option value="'Belarus', serif">Belarus</option>
+  <!-- Можно добавить новые шрифты -->
+  <option value="Cinzel">Cinzel</option>
+  <option value="Atziluth Script">Atziluth Script</option>
+  <option value="Belarus">Belarus</option>
+  <option value="Blast Black Hollow">Blast Black Hollow</option>
+  <option value="SK Nigar RUS">SK Nigar RUS</option>
+  <option value="Tarbarsam Medium">Tarbarsam Medium</option>
 </select>
 
 <button onclick="previewValentine()">Посмотреть Валентинку</button>
@@ -137,7 +149,10 @@ button{
 <div class="preview" id="preview"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+emailjs.init("YOUR_PUBLIC_KEY"); // сюда вставь свой public key
+
 const MAX = 200;
 const toName = document.getElementById("toName");
 const message = document.getElementById("message");
@@ -170,34 +185,32 @@ function previewValentine(){
   const msg = message.value.toLowerCase();
   const to = toName.value;
 
-  // Показываем превью в <div> с текстом поверх картинки
   const preview = document.getElementById("preview");
   preview.innerHTML = "";
+
   const canvas = document.createElement("canvas");
   canvas.width = 600;
   canvas.height = 600;
   preview.appendChild(canvas);
-
   const ctx = canvas.getContext("2d");
-
-  const heart = new Image();
-  heart.crossOrigin = "anonymous";
-  heart.src = "https://www.clipartbest.com/cliparts/nTX/8Rk/nTX8Rkdac.png";
 
   const bg = new Image();
   bg.crossOrigin = "anonymous";
   bg.src = "https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg";
 
+  const heart = new Image();
+  heart.crossOrigin = "anonymous";
+  heart.src = "https://www.clipartbest.com/cliparts/nTX/8Rk/nTX8Rkdac.png";
+
   bg.onload = () => {
     ctx.drawImage(bg, 0, 0, 600, 600);
     heart.onload = () => {
-      // Рисуем цветное сердце
+      // Цветное сердце
       ctx.fillStyle = color;
       ctx.fillRect(0, 0, 600, 600);
       ctx.globalCompositeOperation = "destination-in";
       ctx.drawImage(heart, 0, 0, 600, 600);
       ctx.globalCompositeOperation = "source-over";
-      // Рисуем сердце поверх фона
       ctx.drawImage(heart, 0, 0, 600, 600);
 
       // Текст внутри сердца
@@ -206,8 +219,7 @@ function previewValentine(){
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      const text = `${to}, ${msg}`;
-      wrapText(ctx, text, 300, 300, 320, 30);
+      wrapText(ctx, `${to}, ${msg}`, 300, 300, 320, 30);
 
       // Подпись
       ctx.fillStyle = "black";
@@ -218,7 +230,7 @@ function previewValentine(){
   }
 }
 
-// Функция переноса текста на несколько строк
+// перенос текста
 function wrapText(ctx, text, x, y, maxWidth, lineHeight){
   const words = text.split(' ');
   let line = '';
@@ -241,6 +253,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight){
   }
 }
 
+// Отправка на EmailJS
 function generatePNG(){
   const canvas = document.querySelector("#preview canvas");
   if(!canvas){
@@ -248,15 +261,16 @@ function generatePNG(){
     return;
   }
   const dataURL = canvas.toDataURL("image/png");
+  const from = document.getElementById("anonymous").checked ? "Аноним" : fromName.value;
 
-  // Отправка через EmailJS
-  (function(){ emailjs.init("YOUR_PUBLIC_KEY"); })();
   emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-    subject: `${fromName.value} → ${toName.value}`,
+    subject: `${from} → ${toName.value}`,
     message: `<img src="${dataURL}" alt="Валентинка">`
+  }).then(()=>{
+    alert("Валентинка отправлена на почту!");
+  }).catch((err)=>{
+    alert("Ошибка отправки: " + err);
   });
-
-  alert("Валентинка PNG отправлена на почту!");
 }
 </script>
 
