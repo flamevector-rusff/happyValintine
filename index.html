@@ -10,171 +10,69 @@
 
 /* ================= ШРИФТЫ ================= */
 
-@font-face {
-  font-family: 'Atziluth';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf');
+@font-face { font-family:'Atziluth'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf'); }
+@font-face { font-family:'Belarus'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf'); }
+@font-face { font-family:'Blast'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf'); }
+@font-face { font-family:'SKNigar'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf'); }
+@font-face { font-family:'Tarbarsam'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf'); }
+@font-face { font-family:'CinzelCustom'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf'); }
+
+/* ====== интерфейс ====== */
+
+body{
+margin:0;background:#111;display:flex;justify-content:center;align-items:center;
+height:100vh;gap:40px;font-family:'CinzelCustom';
 }
 
-@font-face {
-  font-family: 'Belarus';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf');
+.form-block{
+width:350px;padding:25px;backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.1);border-radius:20px;color:white;
+display:flex;flex-direction:column;gap:12px;
 }
 
-@font-face {
-  font-family: 'Blast';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf');
+input,textarea,select{
+font-family:'CinzelCustom';padding:8px;border:none;border-radius:6px;outline:none;
 }
 
-@font-face {
-  font-family: 'SKNigar';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf');
+textarea{resize:none;height:120px;}
+.counter{text-align:right;font-size:14px;}
+button{padding:10px;border:none;border-radius:10px;cursor:pointer;font-family:'CinzelCustom';}
+button:disabled{opacity:0.5;cursor:not-allowed;}
+
+/* ===== предпросмотр ===== */
+
+.valentine{
+width:600px;height:600px;
+background-image:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
+background-repeat:repeat;
+display:flex;justify-content:center;align-items:center;
+position:relative;font-family:Arial,sans-serif;
 }
 
-@font-face {
-  font-family: 'Tarbarsam';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf');
+.heart-container{
+width:550px;height:550px;
+display:flex;justify-content:center;align-items:center;
+position:relative;
 }
 
-@font-face {
-  font-family: 'CinzelCustom';
-  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf');
+.heart{
+font-size:590px;line-height:1;
+color:#7B001C;transition:0.3s;
 }
 
-/* ================= ОБЩЕЕ ================= */
-
-body {
-  margin:0;
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  gap:40px;
-  font-family:'CinzelCustom';
+.heart-text{
+position:absolute;top:50%;left:50%;
+width:70%;transform:translate(-50%,-50%);
+text-align:center;color:white;font-size:18px;line-height:1.4;
 }
 
-/* ===== ФОРМА ===== */
-
-.form-block {
-  width:350px;
-  padding:25px;
-  backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.1);
-  border-radius:20px;
-  color:white;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+.signature{
+position:absolute;bottom:10px;right:10px;
+font-size:16px;color:#000;
 }
 
-input, textarea, select {
-  font-family:'CinzelCustom';
-  padding:8px;
-  border:none;
-  border-radius:6px;
-  outline:none;
-}
-
-textarea {
-  resize:none;
-  height:120px;
-}
-
-.counter {
-  text-align:right;
-  font-size:14px;
-}
-
-button {
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-family:'CinzelCustom';
-}
-
-button:disabled {
-  opacity:0.5;
-  cursor:not-allowed;
-}
-
-/* ===== ПРЕВЬЮ ===== */
-
-.valentine {
-  width: 600px;
-  height: 600px;
-  background-image: url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
-  background-repeat: repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  font-family: Arial, sans-serif;
-}
-
-.heart-container {
-  width: 550px;
-  height: 550px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.heart {
-  font-size: 590px;
-  line-height: 1;
-  color:#7B001C;
-  transition:0.3s;
-}
-
-.heart-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 70%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-.signature {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  font-size: 16px;
-  color: #000;
-}
-
-.name-link {
-  display:inline-block;
-  transition:0.3s;
-}
-
-.name-link:hover {
-  transform: scale(1.1) rotate(-2deg);
-}
-
-/* ===== ЦВЕТА В SELECT ===== */
-
-#colorSelect option[value="#7B001C"] { background:#7B001C; color:white; }
-#colorSelect option[value="#CD5C5C"] { background:#CD5C5C; }
-#colorSelect option[value="#CB4154"] { background:#CB4154; }
-#colorSelect option[value="#DC143C"] { background:#DC143C; }
-#colorSelect option[value="#4F0014"] { background:#4F0014; color:white; }
-#colorSelect option[value="#FF97BB"] { background:#FF97BB; }
-#colorSelect option[value="#FBA0E3"] { background:#FBA0E3; }
-
-/* ===== ШРИФТЫ В SELECT ===== */
-
-#fontSelect option[value="Atziluth"] { font-family:'Atziluth'; }
-#fontSelect option[value="Belarus"] { font-family:'Belarus'; }
-#fontSelect option[value="Blast"] { font-family:'Blast'; }
-#fontSelect option[value="SKNigar"] { font-family:'SKNigar'; }
-#fontSelect option[value="Tarbarsam"] { font-family:'Tarbarsam'; }
-#fontSelect option[value="CinzelCustom"] { font-family:'CinzelCustom'; }
+.name-link{display:inline-block;transition:0.3s;}
+.name-link:hover{transform:scale(1.1) rotate(-2deg);}
 
 </style>
 </head>
@@ -182,13 +80,11 @@ button:disabled {
 <body>
 
 <div class="form-block">
-
 <input type="text" id="toName" placeholder="Имя адресата" required>
 <input type="url" id="toLink" placeholder="Ссылка на профиль" required>
-
 <input type="text" id="fromName" placeholder="Имя адресанта">
 
-<div style="display:flex; justify-content:space-between; align-items:center;">
+<div style="display:flex;justify-content:space-between;align-items:center;">
 <span>анонимно</span>
 <input type="checkbox" id="anon">
 </div>
@@ -218,20 +114,13 @@ button:disabled {
 </select>
 
 <button id="sendBtn" disabled>Упаковать и отправить валентинку</button>
-
 </div>
 
-<div id="previewArea">
 <div class="valentine">
-  <div class="heart-container">
-    <span class="heart" id="heart">❤</span>
-    <div class="heart-text" id="previewText">
-      [имя,] текст появится здесь
-    </div>
-    <div class="signature" id="previewSign">
-      с любовью[, имя]
-    </div>
-  </div>
+<div class="heart-container">
+<span class="heart" id="heart">❤</span>
+<div class="heart-text" id="previewText">[имя,] текст появится здесь</div>
+<div class="signature" id="previewSign">с любовью[, имя]</div>
 </div>
 </div>
 
@@ -239,80 +128,68 @@ button:disabled {
 
 emailjs.init("b9M6h3lPvYhW1xIBZ");
 
-const toName = document.getElementById("toName");
-const toLink = document.getElementById("toLink");
-const fromName = document.getElementById("fromName");
-const message = document.getElementById("message");
-const counter = document.getElementById("counter");
-const anon = document.getElementById("anon");
-const previewText = document.getElementById("previewText");
-const previewSign = document.getElementById("previewSign");
-const heart = document.getElementById("heart");
-const sendBtn = document.getElementById("sendBtn");
-const fontSelect = document.getElementById("fontSelect");
-const colorSelect = document.getElementById("colorSelect");
+const forumStyles = `
+.valentine{width:600px;height:600px;background-image:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');background-repeat:repeat;display:flex;justify-content:center;align-items:center;position:relative;font-family:Arial,sans-serif;}
+.heart-container{width:550px;height:550px;display:flex;justify-content:center;align-items:center;position:relative;}
+.heart{font-size:590px;line-height:1;}
+.heart-text{position:absolute;top:50%;left:50%;width:70%;transform:translate(-50%,-50%);text-align:center;color:white;font-size:18px;line-height:1.4;}
+.signature{position:absolute;bottom:10px;right:10px;font-size:16px;color:#000;}
+.name-link{display:inline-block;transition:0.3s;}
+.name-link:hover{transform:scale(1.1) rotate(-2deg);}
+`;
 
-function updatePreview() {
+const toName=document.getElementById("toName");
+const toLink=document.getElementById("toLink");
+const fromName=document.getElementById("fromName");
+const message=document.getElementById("message");
+const counter=document.getElementById("counter");
+const anon=document.getElementById("anon");
+const previewText=document.getElementById("previewText");
+const previewSign=document.getElementById("previewSign");
+const heart=document.getElementById("heart");
+const sendBtn=document.getElementById("sendBtn");
+const fontSelect=document.getElementById("fontSelect");
+const colorSelect=document.getElementById("colorSelect");
 
-let namePart = toName.value ? 
-`<a href="${toLink.value}" class="name-link">${toName.value}</a>, ` 
-: "";
-
-previewText.innerHTML = namePart + message.value;
-
-previewSign.innerHTML = "с любовью" + 
-(anon.checked ? "" : ", " + fromName.value);
-
-previewText.style.fontFamily = fontSelect.value;
-
-sendBtn.disabled = !(toName.value && toLink.value);
+function updatePreview(){
+let namePart=toName.value?`<a href="${toLink.value}" class="name-link">${toName.value}</a>, `:"";
+previewText.innerHTML=namePart+message.value;
+previewSign.innerHTML="с любовью"+(anon.checked?"":", "+fromName.value);
+previewText.style.fontFamily=fontSelect.value;
+sendBtn.disabled=!(toName.value&&toLink.value);
 }
 
-message.addEventListener("input", () => {
-counter.textContent = message.value.length + " / 200";
-counter.style.color = message.value.length >= 200 ? "red" : "white";
+message.addEventListener("input",()=>{
+counter.textContent=message.value.length+" / 200";
+counter.style.color=message.value.length>=200?"red":"white";
 updatePreview();
 });
 
-[toName,toLink,fromName,fontSelect].forEach(el=>{
-el.addEventListener("input",updatePreview);
-});
-
-colorSelect.addEventListener("change",()=>{
-heart.style.color = colorSelect.value;
-});
-
-anon.addEventListener("change",()=>{
-fromName.disabled = anon.checked;
-fromName.style.background = anon.checked ? "#ccc" : "white";
-updatePreview();
-});
+[toName,toLink,fromName,fontSelect].forEach(el=>el.addEventListener("input",updatePreview));
+colorSelect.addEventListener("change",()=>heart.style.color=colorSelect.value);
+anon.addEventListener("change",()=>{fromName.disabled=anon.checked;updatePreview();});
 
 sendBtn.addEventListener("click",()=>{
 
-let finalCode = `[html]
+let finalCode=`[html]
 <div class="valentine">
-  <div class="heart-container">
-    <span class="heart" style="color:${colorSelect.value};">❤</span>
-    <div class="heart-text" style="font-family:${fontSelect.value};">
-      <a href="${toLink.value}">${toName.value}</a>, ${message.value}
-    </div>
-    <div class="signature">
-      с любовью${anon.checked ? "" : ", " + fromName.value}
-    </div>
-  </div>
+<div class="heart-container">
+<span class="heart" style="color:${colorSelect.value};">❤</span>
+<div class="heart-text" style="font-family:${fontSelect.value};">
+<a href="${toLink.value}" class="name-link">${toName.value}</a>, ${message.value}
 </div>
-
+<div class="signature">
+с любовью${anon.checked?"":", "+fromName.value}
+</div>
+</div>
+</div>
 <style>
-${document.querySelector("style").innerHTML}
+${forumStyles}
 </style>
 [/html]`;
 
-emailjs.send("service_3gq1lpc","template_hl05cfu",{
-message: finalCode
-}).then(()=>{
-alert("Валентинка отправлена 💌");
-});
+emailjs.send("service_3gq1lpc","template_hl05cfu",{message:finalCode})
+.then(()=>alert("Валентинка отправлена 💌"));
 
 });
 
