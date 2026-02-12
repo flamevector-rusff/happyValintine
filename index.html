@@ -157,6 +157,15 @@ const forumStyles = `
 .name-link:hover{transform:scale(1.1) rotate(-2deg);}
 `;
 
+const fontFaces = `
+@font-face { font-family:'Atziluth'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf'); }
+@font-face { font-family:'Belarus'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf'); }
+@font-face { font-family:'Blast'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf'); }
+@font-face { font-family:'SKNigar'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf'); }
+@font-face { font-family:'Tarbarsam'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf'); }
+@font-face { font-family:'CinzelCustom'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf'); }
+`;
+
 const toName=document.getElementById("toName");
 const toLink=document.getElementById("toLink");
 const fromName=document.getElementById("fromName");
@@ -225,6 +234,7 @@ let finalCode=`[html]
 </div>
 </div>
 <style>
+${fontFaces}
 ${forumStyles}
 </style>
 [/html]`;
