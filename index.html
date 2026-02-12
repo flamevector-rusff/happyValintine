@@ -2,186 +2,303 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Валентинка PNG</title>
-
-<style>
-@font-face { font-family: 'Cinzel'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf') format('truetype'); }
-@font-face { font-family: 'Atziluth Script'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf') format('truetype'); }
-@font-face { font-family: 'Belarus'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf') format('opentype'); }
-@font-face { font-family: 'Blast Black Hollow'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf') format('opentype'); }
-@font-face { font-family: 'SK Nigar RUS'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf') format('opentype'); }
-@font-face { font-family: 'Tarbarsam Medium'; src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf') format('truetype'); }
-
-body {
-  margin:0; padding:40px;
-  font-family:'Cinzel', serif;
-  background:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
-}
-
-.container{display:flex; gap:40px;}
-.form-wrapper{
-  width:500px; padding:25px;
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.25);
-  border-radius:20px;
-  box-shadow:0 0 30px rgba(0,0,0,0.2);
-}
-
-input, textarea, select{ width:100%; margin-bottom:10px; padding:8px; font-family:'Cinzel', serif; }
-textarea{ resize:none; height:150px; }
-.checkbox-row{ display:flex; align-items:center; gap:8px; margin-bottom:10px; }
-.color-option{ display:flex; align-items:center; gap:5px; }
-.color-box{ width:20px; height:20px; border:1px solid #000; }
-.counter{ font-size:12px; text-align:right; margin-bottom:10px; color:#333; }
-button{ display:block; margin:10px auto 0; padding:10px 25px; font-family:'Cinzel', serif; cursor:pointer; }
-
-.preview{
-  width:600px; height:600px; border:5px solid #000;
-  position:relative; overflow:hidden;
-  display:flex; justify-content:center; align-items:center;
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-<div class="form-wrapper">
-<label>Кому (имя + ссылка)</label>
-<input type="text" id="toName" placeholder="Имя">
-<input type="text" id="toLink" placeholder="Ссылка (не обязательно)">
-
-<div class="checkbox-row">
-  <label for="anonymous">Анонимно</label>
-  <input type="checkbox" id="anonymous">
-</div>
-
-<label>От кого</label>
-<input type="text" id="fromName" placeholder="Ваше имя">
-
-<label>Пожелание</label>
-<textarea id="message" maxlength="200" placeholder="Текст пожелания"></textarea>
-<div class="counter" id="charCount">0 / 200</div>
-
-<label>Цвет</label>
-<div class="checkbox-row" id="colorOptions">
-  <div class="color-option"><input type="radio" name="color" value="#CD4A4C" checked><div class="color-box" style="background:#CD4A4C;"></div></div>
-  <div class="color-option"><input type="radio" name="color" value="#8B0000"><div class="color-box" style="background:#8B0000;"></div></div>
-  <div class="color-option"><input type="radio" name="color" value="#E32636"><div class="color-box" style="background:#E32636;"></div></div>
-  <div class="color-option"><input type="radio" name="color" value="#5E2129"><div class="color-box" style="background:#5E2129;"></div></div>
-  <div class="color-option"><input type="radio" name="color" value="#F19CBB"><div class="color-box" style="background:#F19CBB;"></div></div>
-  <div class="color-option"><input type="radio" name="color" value="#412227"><div class="color-box" style="background:#412227;"></div></div>
-</div>
-
-<label>Шрифт</label>
-<select id="font">
-  <option value="Cinzel" style="font-family:'Cinzel'">Cinzel</option>
-  <option value="Atziluth Script" style="font-family:'Atziluth Script'">Atziluth Script</option>
-  <option value="Belarus" style="font-family:'Belarus'">Belarus</option>
-  <option value="Blast Black Hollow" style="font-family:'Blast Black Hollow'">Blast Black Hollow</option>
-  <option value="SK Nigar RUS" style="font-family:'SK Nigar RUS'">SK Nigar RUS</option>
-  <option value="Tarbarsam Medium" style="font-family:'Tarbarsam Medium'">Tarbarsam Medium</option>
-</select>
-
-<button onclick="previewValentine()">Посмотреть Валентинку</button>
-<button onclick="generatePNG()">Упаковать Валентинку</button>
-</div>
-
-<div class="preview" id="preview"></div>
-</div>
+<title>Валентинка</title>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+/* ================= ШРИФТЫ ================= */
+
+@font-face {
+  font-family: 'Atziluth';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Atziluth-Script_1.ttf');
+}
+
+@font-face {
+  font-family: 'Belarus';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Belarus-Regular(%2Bbel).otf');
+}
+
+@font-face {
+  font-family: 'Blast';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/Blast%20Black%20Hollow.otf');
+}
+
+@font-face {
+  font-family: 'SKNigar';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/SKNigarRUS.otf');
+}
+
+@font-face {
+  font-family: 'Tarbarsam';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf');
+}
+
+@font-face {
+  font-family: 'CinzelCustom';
+  src: url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf');
+}
+
+/* ================= ОБЩЕЕ ================= */
+
+body {
+  margin:0;
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  gap:40px;
+  font-family:'CinzelCustom';
+}
+
+/* ===== ФОРМА ===== */
+
+.form-block {
+  width:350px;
+  padding:25px;
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.1);
+  border-radius:20px;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+input, textarea, select {
+  font-family:'CinzelCustom';
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  outline:none;
+}
+
+textarea {
+  resize:none;
+  height:120px;
+}
+
+.counter {
+  text-align:right;
+  font-size:14px;
+}
+
+button {
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-family:'CinzelCustom';
+}
+
+button:disabled {
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+/* ===== ПРЕВЬЮ ===== */
+
+.valentine {
+  width: 600px;
+  height: 600px;
+  background-image: url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');
+  background-repeat: repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.heart-container {
+  width: 550px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.heart {
+  font-size: 590px;
+  line-height: 1;
+}
+
+.heart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.signature {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #000;
+}
+
+.name-link {
+  display:inline-block;
+  transition:0.3s;
+}
+
+.name-link:hover {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-block">
+
+<input type="text" id="toName" placeholder="Имя адресата" required>
+<input type="url" id="toLink" placeholder="Ссылка на профиль" required>
+
+<input type="text" id="fromName" placeholder="Имя адресанта">
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+<span>анонимно</span>
+<input type="checkbox" id="anon">
+</div>
+
+<textarea id="message" maxlength="200" placeholder="Поздравление (до 200 символов)"></textarea>
+<div class="counter" id="counter">0 / 200</div>
+
+<label>Цвет</label>
+<select id="colorSelect">
+<option value="#7B001C">●</option>
+<option value="#CD5C5C">●</option>
+<option value="#CB4154">●</option>
+<option value="#DC143C">●</option>
+<option value="#4F0014">●</option>
+<option value="#FF97BB">●</option>
+<option value="#FBA0E3">●</option>
+</select>
+
+<label>Шрифт</label>
+<select id="fontSelect">
+<option value="Atziluth">Atziluth</option>
+<option value="Belarus">Belarus</option>
+<option value="Blast">Blast</option>
+<option value="SKNigar">SKNigar</option>
+<option value="Tarbarsam">Tarbarsam</option>
+<option value="CinzelCustom">Cinzel</option>
+</select>
+
+<button id="sendBtn" disabled>Упаковать и отправить валентинку</button>
+
+</div>
+
+<div id="previewArea">
+<div class="valentine">
+  <div class="heart-container">
+    <span class="heart" id="heart">❤</span>
+    <div class="heart-text" id="previewText">
+      [имя,] текст появится здесь
+    </div>
+    <div class="signature" id="previewSign">
+      с любовью[, имя]
+    </div>
+  </div>
+</div>
+</div>
+
 <script>
+
 emailjs.init("b9M6h3lPvYhW1xIBZ");
 
-const MAX=200;
-const toName=document.getElementById("toName");
-const message=document.getElementById("message");
-const counter=document.getElementById("charCount");
-const fromName=document.getElementById("fromName");
+const toName = document.getElementById("toName");
+const toLink = document.getElementById("toLink");
+const fromName = document.getElementById("fromName");
+const message = document.getElementById("message");
+const counter = document.getElementById("counter");
+const anon = document.getElementById("anon");
+const previewText = document.getElementById("previewText");
+const previewSign = document.getElementById("previewSign");
+const heart = document.getElementById("heart");
+const sendBtn = document.getElementById("sendBtn");
+const fontSelect = document.getElementById("fontSelect");
 
-document.getElementById("anonymous").addEventListener("change",function(){
-  fromName.disabled=this.checked;
-  if(this.checked) fromName.value="Аноним"; else fromName.value="";
+function updatePreview() {
+
+let namePart = toName.value ? 
+`<a href="${toLink.value}" class="name-link">${toName.value}</a>, ` 
+: "";
+
+previewText.innerHTML = namePart + message.value;
+
+previewSign.innerHTML = "с любовью" + 
+(anon.checked ? "" : ", " + fromName.value);
+
+previewText.style.fontFamily = fontSelect.value;
+
+sendBtn.disabled = !(toName.value && toLink.value);
+}
+
+message.addEventListener("input", () => {
+counter.textContent = message.value.length + " / 200";
+if(message.value.length >= 200){
+counter.style.color="red";
+} else {
+counter.style.color="white";
+}
+updatePreview();
 });
 
-function updateCounter(){
-  let total=toName.value.length+message.value.length;
-  if(total>MAX){message.value=message.value.substring(0,MAX-toName.value.length); total=MAX;}
-  counter.textContent=total+" / "+MAX;
-  counter.style.color=total>=MAX?"red":"#333";
-}
-toName.addEventListener("input",updateCounter);
-message.addEventListener("input",updateCounter);
+[toName,toLink,fromName,fontSelect].forEach(el=>{
+el.addEventListener("input",updatePreview);
+});
 
-function previewValentine(){
-  const color=document.querySelector('input[name="color"]:checked').value;
-  const font=document.getElementById("font").value;
-  const from=document.getElementById("anonymous").checked?"Аноним":fromName.value;
-  const msg=message.value.toLowerCase();
-  const to=toName.value;
+anon.addEventListener("change",()=>{
+fromName.disabled = anon.checked;
+fromName.style.background = anon.checked ? "#ccc" : "white";
+updatePreview();
+});
 
-  const preview=document.getElementById("preview");
-  preview.innerHTML="";
-  const canvas=document.createElement("canvas");
-  canvas.width=600; canvas.height=600;
-  preview.appendChild(canvas);
-  const ctx=canvas.getContext("2d");
+document.getElementById("colorSelect").addEventListener("change",(e)=>{
+heart.style.filter = "brightness(0) saturate(100%) invert(18%) sepia(22%) saturate(1186%) hue-rotate(310deg)";
+heart.style.color = e.target.value;
+});
 
-  const bg=new Image(); bg.crossOrigin="anonymous";
-  bg.src="https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg";
-  const heart=new Image(); heart.crossOrigin="anonymous";
-  heart.src="https://www.clipartbest.com/cliparts/nTX/8Rk/nTX8Rkdac.png";
+sendBtn.addEventListener("click",()=>{
 
-  let loaded=0;
-  function drawIfReady(){
-    loaded++;
-    if(loaded<2) return;
-    ctx.drawImage(bg,0,0,600,600);
-    ctx.fillStyle=color;
-    ctx.fillRect(0,0,600,600);
-    ctx.globalCompositeOperation="destination-in";
-    ctx.drawImage(heart,0,0,600,600);
-    ctx.globalCompositeOperation="source-over";
-    ctx.drawImage(heart,0,0,600,600);
+let finalCode = `[html]
+<div class="valentine">
+  <div class="heart-container">
+    <span class="heart">❤</span>
+    <div class="heart-text">
+      <a href="${toLink.value}">${toName.value}</a>, ${message.value}
+    </div>
+    <div class="signature">
+      с любовью${anon.checked ? "" : ", " + fromName.value}
+    </div>
+  </div>
+</div>
 
-    ctx.fillStyle="white";
-    ctx.font=`24px ${font}`;
-    ctx.textAlign="center"; ctx.textBaseline="middle";
-    wrapText(ctx,`${to}, ${msg}`,300,300,320,30);
+<style>
+${document.querySelector("style").innerHTML}
+</style>
+[/html]`;
 
-    ctx.fillStyle="black"; ctx.font=`bold 16px ${font}`;
-    ctx.textAlign="right";
-    ctx.fillText(`с любовью, ${from}`,580,580);
-  }
-  bg.onload=drawIfReady;
-  heart.onload=drawIfReady;
-}
+emailjs.send("service_3gq1lpc","template_hl05cfu",{
+message: finalCode
+}).then(()=>{
+alert("Валентинка отправлена 💌");
+});
 
-function wrapText(ctx,text,x,y,maxWidth,lineHeight){
-  const words=text.split(' ');
-  let line=''; let lines=[];
-  for(let n=0;n<words.length;n++){
-    const testLine=line+words[n]+' ';
-    const metrics=ctx.measureText(testLine);
-    if(metrics.width>maxWidth && n>0){lines.push(line); line=words[n]+' ';} else{line=testLine;}
-  }
-  lines.push(line);
-  const startY=y-(lines.length-1)/2*lineHeight;
-  for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],x,startY+i*lineHeight);
-}
+});
 
-function generatePNG(){
-  const canvas=document.querySelector("#preview canvas");
-  if(!canvas){alert("Сначала нажмите 'Посмотреть Валентинку'"); return;}
-  const dataURL=canvas.toDataURL("image/png");
-  const from=document.getElementById("anonymous").checked?"Аноним":fromName.value;
-
-  emailjs.send("service_3gq1lpc","template_hl05cfu",{
-    subject:`${from} → ${toName.value}`,
-    message:`<img src="${dataURL}" alt="Валентинка">`
-  }).then(()=>alert("Валентинка отправлена на почту!"))
-    .catch(err=>alert("Ошибка: "+err));
-}
 </script>
 </body>
 </html>
