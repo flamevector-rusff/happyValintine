@@ -86,7 +86,8 @@ text-align:center;color:white;font-size:18px;line-height:1.4;
 
 .signature{
 position:absolute;bottom:10px;right:10px;
-font-size:16px;color:#000;
+  font-weight: bold;
+font-size:30px;color:#000;
 }
 
 .name-link{display:inline-block;transition:0.3s;color:white !important;text-decoration:underline !important;}
@@ -151,7 +152,7 @@ const forumStyles = `
 .heart-container{width:550px;height:550px;display:flex;justify-content:center;align-items:center;position:relative;}
 .heart{font-size:600px;line-height:1;}
 .heart-text{position:absolute;top:50%;left:50%;width:70%;transform:translate(-50%,-50%);text-align:center;color:white;font-size:18px;line-height:1.4;}
-.signature{position:absolute;bottom:10px;right:10px;font-size:16px;color:#000;}
+.signature{position:absolute;bottom:10px;right:10px;font-weight: bold;font-size:30pxcolor:#000;}
 .name-link{display:inline-block;transition:0.3s;}
 .name-link:hover{transform:scale(1.1) rotate(-2deg);}
 `;
@@ -178,11 +179,32 @@ previewText.style.fontFamily=fontSelect.value;
 sendBtn.disabled=!(toName.value&&toLink.value);
 }
 
-message.addEventListener("input",()=>{
-counter.textContent=message.value.length+" / 200";
-counter.style.color=message.value.length>=200?"red":"white";
+function updateCounter(){
+
+let nameLength = toName.value ? toName.value.length + 2 : 0; // + ", "
+let totalLength = nameLength + message.value.length;
+
+counter.textContent = totalLength + " / 200";
+
+if(totalLength >= 200){
+counter.style.color="red";
+message.value = message.value.substring(0, 200 - nameLength);
+} else {
+counter.style.color="white";
+}
+
+}
+
+message.addEventListener("input", ()=>{
+updateCounter();
 updatePreview();
 });
+
+toName.addEventListener("input", ()=>{
+updateCounter();
+updatePreview();
+});
+
 
 [toName,toLink,fromName,fontSelect].forEach(el=>el.addEventListener("input",updatePreview));
 colorSelect.addEventListener("change",()=>heart.style.color=colorSelect.value);
