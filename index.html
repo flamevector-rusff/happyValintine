@@ -226,7 +226,7 @@ let finalCode=`[html]
 <div class="heart-container">
 <span class="heart" style="color:${colorSelect.value};">❤</span>
 <div class="heart-text" style="font-family:${fontSelect.value};">
-<a href="${toLink.value}" class="name-link">${toName.value}</a>, ${message.value}
+  <a href="${toLink.value}" class="name-link" style="font-family:${fontSelect.value};">${toName.value}</a>, ${message.value}
 </div>
 <div class="signature" style="font-family:${fontSelect.value};">
 с любовью${anon.checked?"":", "+fromName.value}
