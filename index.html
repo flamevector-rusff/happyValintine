@@ -17,10 +17,27 @@
 @font-face { font-family:'Tarbarsam'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/tarbarsam%20%D0%81%20Medium.ttf'); }
 @font-face { font-family:'CinzelCustom'; src:url('https://raw.githubusercontent.com/flamevector-rusff/valentine/main/cinzel_regular.ttf'); }
 
+/* ===== Цвета в списке ===== */
+#colorSelect option[value="#7B001C"] { background:#7B001C; color:white; }
+#colorSelect option[value="#CD5C5C"] { background:#CD5C5C; }
+#colorSelect option[value="#CB4154"] { background:#CB4154; }
+#colorSelect option[value="#DC143C"] { background:#DC143C; }
+#colorSelect option[value="#4F0014"] { background:#4F0014; color:white; }
+#colorSelect option[value="#FF97BB"] { background:#FF97BB; }
+#colorSelect option[value="#FBA0E3"] { background:#FBA0E3; }
+
+/* ===== Шрифты в списке ===== */
+#fontSelect option[value="Atziluth"] { font-family:'Atziluth'; }
+#fontSelect option[value="Belarus"] { font-family:'Belarus'; }
+#fontSelect option[value="Blast"] { font-family:'Blast'; }
+#fontSelect option[value="SKNigar"] { font-family:'SKNigar'; }
+#fontSelect option[value="Tarbarsam"] { font-family:'Tarbarsam'; }
+#fontSelect option[value="CinzelCustom"] { font-family:'CinzelCustom'; }
+
 /* ====== интерфейс ====== */
 
 body{
-margin:0;background-image:url('https://static.vecteezy.com/system/resources/thumbnails/006/305/063/small/seamless-pattern-of-pink-and-gray-hearts-on-a-white-background-use-on-valentines-day-on-textiles-wrapping-paper-backgrounds-souvenirs-illustration-vector.jpg');
+margin:0;background-image:url('https://i.pinimg.com/236x/cd/3d/6d/cd3d6da30ca3cbf3eeaedc735fd82c01.jpg?nii=t');
 background-repeat:repeat;display:flex;justify-content:center;align-items:center;
 height:100vh;gap:40px;font-family:'CinzelCustom';
 }
@@ -57,7 +74,7 @@ position:relative;
 }
 
 .heart{
-font-size:590px;line-height:1;
+font-size:600px;line-height:1;
 color:#7B001C;transition:0.3s;
 }
 
@@ -132,7 +149,7 @@ emailjs.init("b9M6h3lPvYhW1xIBZ");
 const forumStyles = `
 .valentine{width:600px;height:600px;background-image:url('https://cdn.vectorstock.com/i/preview-1x/61/14/valentine-s-day-seamless-pattern-with-hand-drawn-vector-45896114.jpg');background-repeat:repeat;display:flex;justify-content:center;align-items:center;position:relative;font-family:Arial,sans-serif;}
 .heart-container{width:550px;height:550px;display:flex;justify-content:center;align-items:center;position:relative;}
-.heart{font-size:590px;line-height:1;}
+.heart{font-size:600px;line-height:1;}
 .heart-text{position:absolute;top:50%;left:50%;width:70%;transform:translate(-50%,-50%);text-align:center;color:white;font-size:18px;line-height:1.4;}
 .signature{position:absolute;bottom:10px;right:10px;font-size:16px;color:#000;}
 .name-link{display:inline-block;transition:0.3s;}
